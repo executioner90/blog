@@ -18,7 +18,7 @@ export default function Home({posts}) {
                             <span>Posted on: </span>
                             <span>{new Date(post.created_at).toLocaleTimeString()}</span>
                         </div>
-                        <p className="font-medium">{post.body}</p>
+                        <p className="font-medium truncate max-w-s">{post.body}</p>
 
                         <Link href={route('post.show', post)} className="text-link">Read more...</Link>
                     </div>
