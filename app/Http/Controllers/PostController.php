@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
-use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -19,12 +19,18 @@ class PostController extends Controller
 
     public function create()
     {
-        //
+        return Inertia::render('Create');
     }
 
-    public function store(StorePostRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'body' => ['required', 'string'],
+        ]);
+
+        Post::query()->create($request->only('body'));
+
+        return Redirect::route('home');
     }
 
     public function show(Post $post)
@@ -37,7 +43,7 @@ class PostController extends Controller
         //
     }
 
-    public function update(UpdatePostRequest $request, Post $post)
+    public function update(Request $request, Post $post)
     {
         //
     }
