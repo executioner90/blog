@@ -31,7 +31,7 @@ class PostController extends Controller
         Post::query()->create($request->only('body'));
 
         return Redirect::route('home')
-            ->with('message', 'Post created.');
+            ->with('success', 'Post created successfully.');
     }
 
     public function show(Post $post)
@@ -41,12 +41,19 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        //
+        return Inertia::render('Edit')->with(['post' => $post]);
     }
 
     public function update(Request $request, Post $post)
     {
-        //
+        $request->validate([
+            'body' => ['required', 'string'],
+        ]);
+
+        $post->update($request->only('body'));
+
+        return Redirect::route('home')
+            ->with('success', 'Post updated successfully.');
     }
 
     public function destroy(Post $post)
@@ -54,6 +61,6 @@ class PostController extends Controller
         $post->delete();
 
         return Redirect::route('home')
-            ->with('message', 'Post deleted successfully.');
+            ->with('success', 'Post deleted successfully.');
     }
 }

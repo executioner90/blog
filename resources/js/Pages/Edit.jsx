@@ -1,20 +1,21 @@
-import { useForm } from "@inertiajs/react";
+import {useForm} from "@inertiajs/react";
+import { useRoute } from "ziggy-js";
 
-export default function Create() {
-    const { data, setData, post, errors, processing } = useForm({
-        body: "",
-    })
+export default function Edit({ post}) {
+    const { data, setData, put, errors, processing } = useForm({
+        body: post.body,
+    });
     const route = useRoute();
 
     function submit(e) {
         e.preventDefault();
 
-        post(route('post.store'));
+        put(route("post.update", post));
     }
 
     return (
         <>
-            <h1 className="title">Create new post</h1>
+            <h1 className="title">Update post</h1>
 
             <div className="w-1/2 mx-auto">
                 <form onSubmit={submit}>
@@ -29,7 +30,7 @@ export default function Create() {
                     <button
                         className="primary-btn mt-4"
                         disabled={processing}
-                    >Create</button>
+                    >Update</button>
                 </form>
             </div>
         </>

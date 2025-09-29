@@ -5,20 +5,20 @@ import { useState } from 'react';
 export default function Home({posts}) {
     const route = useRoute();
     const { flash } = usePage().props
-    const [flashMessage, setFlashMessage] = useState(flash.message)
+    const [flashSuccess, setFlashSuccess] = useState(flash.success)
 
     setTimeout(() => {
-        setFlashMessage(null)
+        setFlashSuccess(null)
     }, 2000)
 
     return (
         <>
             <h1 className="title">Hello</h1>
-            {flashMessage && (
+            {flashSuccess && (
                 <div
-                    className="absolute top-24 right-6 bg-rose-500 p-2 rounded-md shadow-lg text-sm text-white"
+                    className="absolute top-24 right-6 bg-green-500 p-2 rounded-md shadow-lg text-sm text-white"
                 >
-                    {flashMessage}
+                    {flashSuccess}
                 </div>
             )}
 
