@@ -1,6 +1,7 @@
 import {Link} from "@inertiajs/react";
 import { useRoute } from 'ziggy-js';
 import FlashMessage from '../Components/Flash.jsx';
+import Paginate from "../Components/Paginate.jsx";
 
 export default function Home({posts}) {
     const route = useRoute();
@@ -24,23 +25,7 @@ export default function Home({posts}) {
                 ))}
             </div>
 
-            <div className="py-12 px-4">
-                {posts.links.map((link) => (
-                    link.url ?
-                    <Link
-                        key={link.label}
-                        href={link.url}
-                        dangerouslySetInnerHTML={{ __html: link.label }}
-                        className={`p-1 mx-1 ${link.active ? "text-blue-500 font-bold" : ""}`}
-                    />
-                        :
-                        <span
-                            key={link.label}
-                            dangerouslySetInnerHTML={{ __html: link.label }}
-                            className="p-1 mx-1 text-slate-300"
-                        ></span>
-                ))}
-            </div>
+            <Paginate links={posts.links}></Paginate>
         </>
     )
 }
