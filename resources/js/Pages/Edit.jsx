@@ -1,7 +1,7 @@
 import {useForm} from "@inertiajs/react";
 import { useRoute } from "ziggy-js";
 
-export default function Edit({ post}) {
+export default function Edit({ post }) {
     const { data, setData, put, errors, processing } = useForm({
         body: post.body,
     });

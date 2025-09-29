@@ -1,26 +1,14 @@
-import {Link, usePage} from "@inertiajs/react";
+import {Link} from "@inertiajs/react";
 import { useRoute } from 'ziggy-js';
-import { useState } from 'react';
+import FlashMessage from '../Components/Flash.jsx';
 
 export default function Home({posts}) {
     const route = useRoute();
-    const { flash } = usePage().props
-    const [flashSuccess, setFlashSuccess] = useState(flash.success)
-
-    setTimeout(() => {
-        setFlashSuccess(null)
-    }, 2000)
 
     return (
         <>
             <h1 className="title">Hello</h1>
-            {flashSuccess && (
-                <div
-                    className="absolute top-24 right-6 bg-green-500 p-2 rounded-md shadow-lg text-sm text-white"
-                >
-                    {flashSuccess}
-                </div>
-            )}
+            <FlashMessage />
 
             <div>
                 {posts.data.map(post => (
