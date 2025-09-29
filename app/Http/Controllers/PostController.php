@@ -50,6 +50,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+
+        return Redirect::route('home');
     }
 }

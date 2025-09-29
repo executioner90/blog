@@ -1,4 +1,16 @@
+import { useForm } from "@inertiajs/react";
+import { useRoute } from "ziggy-js";
+
 export default function Show({post}) {
+    const { delete: destroy } = useForm();
+    const route = useRoute();
+
+    function submit(e) {
+        e.preventDefault();
+
+        destroy(route('post.destroy', post));
+    }
+
     return (
         <>
             <div className="p-4 border-b">
@@ -7,6 +19,14 @@ export default function Show({post}) {
                     <span>{new Date(post.created_at).toLocaleTimeString()}</span>
                 </div>
                 <p className="font-medium">{post.body}</p>
+
+                <div className="flex items-center justify-end gap-2">
+                    <form onSubmit={submit}>
+                        <button className="bg-red-500 rounded-md text-sm px-4 py-1 text-white cursor-pointer">
+                            Delete
+                        </button>
+                    </form>
+                </div>
             </div>
         </>
     );
