@@ -30,7 +30,8 @@ class PostController extends Controller
 
         Post::query()->create($request->only('body'));
 
-        return Redirect::route('home');
+        return Redirect::route('home')
+            ->with('message', 'Post created.');
     }
 
     public function show(Post $post)
@@ -52,6 +53,7 @@ class PostController extends Controller
     {
         $post->delete();
 
-        return Redirect::route('home');
+        return Redirect::route('home')
+            ->with('message', 'Post deleted successfully.');
     }
 }
