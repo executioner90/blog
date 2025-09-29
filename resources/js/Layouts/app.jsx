@@ -1,12 +1,15 @@
 import {Link} from "@inertiajs/react";
+import {useRoute} from "ziggy-js";
 
 export default function Layout({ children }) {
+    const route = useRoute();
+
     return (
         <>
             <header>
                 <nav>
-                    <Link className="nav-link" href="/">Home</Link>
-                    <Link className="nav-link" href="/post/create">Create</Link>
+                    <Link className="nav-link" href={route('home')}>Home</Link>
+                    <Link className="nav-link" href={route('post.create')}>Create</Link>
                 </nav>
             </header>
 

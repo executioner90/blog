@@ -1,6 +1,9 @@
 import {Link} from "@inertiajs/react";
+import { useRoute } from 'ziggy-js'
 
 export default function Home({posts}) {
+    const route = useRoute();
+
     return (
         <>
             <h1 className="title">Hello</h1>
@@ -13,6 +16,8 @@ export default function Home({posts}) {
                             <span>{new Date(post.created_at).toLocaleTimeString()}</span>
                         </div>
                         <p className="font-medium">{post.body}</p>
+
+                        <Link href={route('post.show', post)} className="text-link">Read more...</Link>
                     </div>
                 ))}
             </div>
